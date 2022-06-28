@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GameObject FishingRod;
+    Rigidbody2D RB;
     float firstPress;
     // Start is called before the first frame update
     void Start()
@@ -14,20 +18,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CastFishingRod();
+        ChargePower();
+        
     }
 
-    void CastFishingRod() {
+    void ChargePower() {
 
         float timePressed;
         if(Input.GetKeyDown("space")) {
-            print("Cast fishing rod");
             firstPress = Time.time;
         }
-        else if(Input.GetKeyUp("space")) {
-            print("Finished casting rod");
+        if (Input.GetKeyUp("space"))
+        {
             timePressed = Time.time - firstPress;
-            print("time held: " + timePressed);
+            CastFishingRod(timePressed);
         }
     }
+
+    void CastFishingRod(float t)
+    {
+        //Throw
+        float power = 5 * t;
+
+        Vector2 Force = new Vector2(power, power);
+        FishingRod.GetComponent<Rigidbody2D>().AddForce(Force, ForceMode2D.Impulse);
+    }
+
 }
