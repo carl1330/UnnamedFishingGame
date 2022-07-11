@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Sprite playerLeft;
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
+    public LayerMask whatStopsMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,12 @@ public class PlayerController : MonoBehaviour
                 else
                     spriteRenderer.sprite = playerRight;
 
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);       
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, whatStopsMovement))
+                {          
+                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                }
+                
+               
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
@@ -46,8 +52,19 @@ public class PlayerController : MonoBehaviour
                 else
                     spriteRenderer.sprite = playerUp;
 
-                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
+                {
+                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                    Debug.Log("wow");
+                }
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(movePoint.position, .2f);
     }
 }
