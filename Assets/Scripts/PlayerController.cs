@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 2f;
+    public float moveSpeed;
     public Transform movePoint;
-    private bool movingHori = false;
-    private bool movingVert = false;
+    public Sprite playerUp;
+    public Sprite playerDown;
+    public Sprite playerLeft;
+    public Sprite playerRight;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +32,20 @@ public class PlayerController : MonoBehaviour
         {
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                    spriteRenderer.sprite = playerLeft;
+                else
+                    spriteRenderer.sprite = playerRight;
+
                 movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);       
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
+                if (Input.GetAxisRaw("Vertical") < 0)
+                    spriteRenderer.sprite = playerDown;
+                else
+                    spriteRenderer.sprite = playerUp;
+
                 movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
             }
         }
