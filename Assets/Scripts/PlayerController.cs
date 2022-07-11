@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
-    public Camera mainCamera;
 
     void playerSprint()
     {
@@ -57,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     void playerCamera()
     {
-        mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        GameObject.Find("Main Camera").transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     } 
 
     // Start is called before the first frame update
