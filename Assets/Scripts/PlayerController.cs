@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
+    public Camera mainCamera;
 
     void playerSprint()
     {
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void playerCamera()
+    {
+        mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+    } 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +69,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Makes the camera follow the player
+        playerCamera();
+
         //Checks if player is running or not
         playerSprint();
 
