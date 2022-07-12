@@ -25,6 +25,7 @@ public class Fish : MonoBehaviour
         fishType = transform.name.Substring(0,transform.name.Length - 7);
         length = generateNum(luck, minLength, maxLength);
         width = generateNum(luck, minWidth + length / 8 , maxWídth);
+        //https://fiveriverstu.org/fish-weight-calculator
         weight = ((length / 0.0254f) * (width / 0.0254f) * (width / 0.0254f)) / mass;
         Debug.Log(this);
     }
