@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
     public int minLength = 1;
     public int maxWídth = 2;
     public int minWidth= 1;
-    public string fishType;
+    private string fishType;
     //Lower is better
     public int luck = 2;
     public override string ToString()
@@ -21,6 +21,7 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fishType = transform.name.Substring(0,transform.name.Length - 7);
         length = generateNum(luck, minLength, maxLength);
         width = generateNum(luck, minWidth, maxWídth);
         weight = generateNum(luck, (int)(length * width), (int)(length * width + 1));
