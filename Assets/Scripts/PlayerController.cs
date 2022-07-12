@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
+    public DialogueTrigger error;
     private Dir dir;
 
     // Start is called before the first frame update
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
         //Generate a fish by pressing space
         if(Input.GetKeyDown("space"))
         {
-            checkIfPlayerCanFish();  
+            if (!checkIfPlayerCanFish())
+                error.triggerDialogue();
         }
       
     }
@@ -104,32 +106,44 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("Main Camera").transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }
 
-    void checkIfPlayerCanFish()
+    bool checkIfPlayerCanFish()
     {
         Collider2D left = Physics2D.OverlapCircle(transform.position + Vector3.left, 0.2f);
         Collider2D right = Physics2D.OverlapCircle(transform.position + Vector3.right, 0.2f);
-        Collider2D up = Physics2D.OverlapCircle(this.transform.position + Vector3.up, 0.2f);
-        Collider2D down = Physics2D.OverlapCircle(this.transform.position + Vector3.down, 0.2f);
+        Collider2D up = Physics2D.OverlapCircle(transform.position + Vector3.up, 0.2f);
+        Collider2D down = Physics2D.OverlapCircle(transform.position + Vector3.down, 0.2f);
         switch (dir)
         {
             case Dir.LEFT:
                 if (left != null)
+                {
                     playerFish(left.tag);
-                break;
+                    return true;
+                }
+                break;   
             case Dir.RIGHT:
                 if (right != null)
+                {
                     playerFish(right.tag);
+                    return true;
+                }
                 break;
             case Dir.UP:
                 if (up != null)
+                {
                     playerFish(up.tag);
+                    return true;
+                }
                 break;
             case Dir.DOWN:
                 if (down != null)
+                {
                     playerFish(down.tag);
-                break;                
+                    return true;
+                }
+                break;
         }
-        Debug.Log("You can't fish here, try somewhere with more water");
+        return false;
     }
 
     void playerFish(string bodyOfWater)

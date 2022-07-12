@@ -9,7 +9,7 @@ public class Fish : MonoBehaviour
     private float weight;
     public float maxLength = 2;
     public float minLength = 1;
-    public float maxWídth = 2;
+    public float maxWidth = 2;
     public float minWidth= 1;
     public float mass = 800;
     private string fishType;
@@ -24,7 +24,7 @@ public class Fish : MonoBehaviour
     {
         fishType = transform.name.Substring(0,transform.name.Length - 7);
         length = generateNum(luck, minLength, maxLength);
-        width = generateNum(luck, minWidth + length / 8 , maxWídth);
+        width = generateNum(luck, minWidth + length / 8 , maxWidth);
         //https://fiveriverstu.org/fish-weight-calculator
         weight = ((length / 0.0254f) * (width / 0.0254f) * (width / 0.0254f)) / mass;
         Debug.Log(this);
