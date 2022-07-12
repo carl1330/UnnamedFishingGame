@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 713356736}
   - component: {fileID: 713356735}
   - component: {fileID: 713356734}
+  - component: {fileID: 713356739}
   m_Layer: 6
   m_Name: Collision
   m_TagString: Lake
@@ -1311,6 +1312,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &713356739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713356732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41c988769886904bb55e94a1ae18f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLength: 2
+  minLength: 1
+  "maxW\xEDdth": 2
+  minWidth: 1
+  fishType: Roach
+  luck: 2
 --- !u!1 &943173652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1422,6 @@ MonoBehaviour:
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 64
-  prefab: {fileID: 8867648516957005187, guid: b5e24cfbdb33f32419c9eb8a2c631b95, type: 3}
 --- !u!4 &943173655
 Transform:
   m_ObjectHideFlags: 0

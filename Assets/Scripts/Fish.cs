@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishLogic : MonoBehaviour
+public class Fish : MonoBehaviour
 {
     private float length;
     private float width;
@@ -11,10 +11,12 @@ public class FishLogic : MonoBehaviour
     public int minLength = 1;
     public int maxWídth = 2;
     public int minWidth= 1;
+    public string fishType;
+    //Lower is better
     public int luck = 2;
     public override string ToString()
     {
-        return $"Length: {length:0.##}m Width: {width:0.##}m Weight: {weight:0.##}kg";
+        return $"Species: {fishType} Length: {length:0.##}m Width: {width:0.##}m Weight: {weight:0.##}kg";
     }
     // Start is called before the first frame update
     void Start()

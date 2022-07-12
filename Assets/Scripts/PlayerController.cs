@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
-    public GameObject prefab;
     private Dir dir;
 
     // Start is called before the first frame update
@@ -41,8 +40,10 @@ public class PlayerController : MonoBehaviour
         playerMovement();
 
         //Generate a fish by pressing space
-        playerFish();
-
+        if(Input.GetKeyDown("space"))
+        {
+            checkIfPlayerCanFish();
+        }
       
     }
 
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("Main Camera").transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }
 
-    bool checkIfPlayerCanFish()
+    void checkIfPlayerCanFish()
     {
         Collider2D left = Physics2D.OverlapCircle(transform.position + Vector3.left, 0.2f);
         Collider2D right = Physics2D.OverlapCircle(transform.position + Vector3.right, 0.2f);
@@ -112,38 +113,29 @@ public class PlayerController : MonoBehaviour
         switch (dir)
         {
             case Dir.LEFT:
-                if (left == null)
-                    break;
-                return left.tag == "Lake";
+                if (left != null)
+                    playerFish(left.tag);
+                break;
             case Dir.RIGHT:
-                if (right == null)
-                    break;
-                return right.tag == "Lake";
+                if (right != null)
+                    playerFish(right.tag);
+                break;
             case Dir.UP:
-                if (up == null)
-                    break;
-                return up.tag == "Lake";
+                if (up != null)
+                    playerFish(up.tag);
+                break;
             case Dir.DOWN:
                 if (down == null)
-                    break;
-                return down.tag == "Lake";
+                    playerFish(down.tag);
+                break;
         }
-        return false;
     }
 
-    void playerFish()
+    void playerFish(string bodyOfWater)
     {
-        if (Input.GetKeyDown("space"))
-        {
-            if (checkIfPlayerCanFish())
-            {
-                Object.Instantiate(prefab, this.transform);
-            }
-            else
-            {
-                Debug.Log("Cannot fish here, try fishing at a lake");
-            }
-        }
+        FishableFishes fishes = GameObject.FindGameObjectWithTag(bodyOfWater).GetComponent<FishableFishes>();
+        var whichFish = Random.Range(0,fishes.fishes.Length);
+        Object.Instantiate(fishes.fishes[whichFish], this.transform);
     }
 }
 
