@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour
+public class FishLogic : MonoBehaviour
 {
     private float length;
     private float width;
@@ -14,9 +14,9 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        length = generateNum(2,1,5);
-        width = generateNum(2,1,2);
-        weight = generateNum(2,(int)(length * width), (int)(length * width + 1));
+        length = generateNum(2, 1, 5);
+        width = generateNum(2, 1, 2);
+        weight = generateNum(2, (int)(length * width), (int)(length * width + 1));
         Debug.Log(this);
     }
 
