@@ -7,13 +7,14 @@ public class Fish : MonoBehaviour
     private float length;
     private float width;
     private float weight;
-    public int maxLength = 2;
-    public int minLength = 1;
-    public int maxWídth = 2;
-    public int minWidth= 1;
+    public float maxLength = 2;
+    public float minLength = 1;
+    public float maxWídth = 2;
+    public float minWidth= 1;
+    public float mass = 1;
     private string fishType;
     //Lower is better
-    public int luck = 2;
+    public float luck = 2;
     public override string ToString()
     {
         return $"Species: {fishType} Length: {length:0.##}m Width: {width:0.##}m Weight: {weight:0.##}kg";
@@ -23,8 +24,8 @@ public class Fish : MonoBehaviour
     {
         fishType = transform.name.Substring(0,transform.name.Length - 7);
         length = generateNum(luck, minLength, maxLength);
-        width = generateNum(luck, minWidth, maxWídth);
-        weight = generateNum(luck, (int)(length * width), (int)(length * width + 1));
+        width = generateNum(luck, minWidth + length / 8 , maxWídth);
+        weight = ((length / 0.0254f) * (width / 0.0254f) * (width / 0.0254f)) / mass;
         Debug.Log(this);
     }
 
@@ -34,7 +35,7 @@ public class Fish : MonoBehaviour
 
     }
 
-    private float generateNum(int pow, int min, int max)
+    private float generateNum(float pow, float min, float max)
     {
         float result = Random.Range(.1f, .99f);
         result = Mathf.Pow(result, pow);
