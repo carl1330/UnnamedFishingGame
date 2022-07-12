@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
+    public ScriptableObject script;
 
     void playerSprint()
     {
@@ -76,6 +77,11 @@ public class PlayerController : MonoBehaviour
 
         //If the player has reached movePoint, movePoint is then allowed to move.
         playerMovement();
+
+        if(Input.GetKeyDown("space"))
+        {
+
+        }
     }
 }
 
