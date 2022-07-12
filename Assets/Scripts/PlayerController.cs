@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public Sprite playerRight;
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
-    public ScriptableObject script;
     public GameObject prefab;
     private Dir dir;
 
