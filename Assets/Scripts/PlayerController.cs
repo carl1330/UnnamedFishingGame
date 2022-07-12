@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         //Generate a fish by pressing space
         if(Input.GetKeyDown("space"))
         {
-            checkIfPlayerCanFish();
+            checkIfPlayerCanFish();  
         }
       
     }
@@ -125,10 +125,11 @@ public class PlayerController : MonoBehaviour
                     playerFish(up.tag);
                 break;
             case Dir.DOWN:
-                if (down == null)
+                if (down != null)
                     playerFish(down.tag);
-                break;
+                break;                
         }
+        Debug.Log("You can't fish here, try somewhere with more water");
     }
 
     void playerFish(string bodyOfWater)

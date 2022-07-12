@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
     public float minLength = 1;
     public float maxWídth = 2;
     public float minWidth= 1;
-    public float mass = 1;
+    public float mass = 800;
     private string fishType;
     //Lower is better
     public float luck = 2;

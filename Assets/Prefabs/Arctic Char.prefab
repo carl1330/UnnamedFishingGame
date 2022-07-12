@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8867648516957005189}
   - component: {fileID: 8867648516957005188}
   m_Layer: 0
-  m_Name: Char Fish
+  m_Name: Arctic Char
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41c988769886904bb55e94a1ae18f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 5
-  minLength: 2
-  "maxW\xEDdth": 2
-  minWidth: 1
-  fishType: Char Fish
-  luck: 4
+  maxLength: 0.9
+  minLength: 0.3
+  "maxW\xEDdth": 0.7
+  minWidth: 0.1
+  mass: 800
+  luck: 2

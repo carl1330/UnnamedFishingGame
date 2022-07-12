@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41c988769886904bb55e94a1ae18f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 2
-  minLength: 0
-  "maxW\xEDdth": 1
-  minWidth: 0
-  fishType: Roach
-  luck: 2
+  maxLength: 0.5
+  minLength: 0.3
+  "maxW\xEDdth": 0.25
+  minWidth: 0.1
+  mass: 800
+  luck: 1
