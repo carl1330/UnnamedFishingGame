@@ -22,18 +22,14 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //What species the fish is
         fishType = transform.name.Substring(0,transform.name.Length - 7);
+        
         length = generateNum(luck, minLength, maxLength);
         width = generateNum(luck, minWidth + length / 8 , maxWidth);
         //https://fiveriverstu.org/fish-weight-calculator
         weight = ((length / 0.0254f) * (width / 0.0254f) * (width / 0.0254f)) / mass;
         Debug.Log(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private float generateNum(float pow, float min, float max)

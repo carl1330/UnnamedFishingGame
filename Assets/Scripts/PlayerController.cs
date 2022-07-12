@@ -20,32 +20,49 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public LayerMask whatStopsMovement;
     public DialogueTrigger error;
+    public DialogueHandler dialogueBox;
     private Dir dir;
+    private bool inDialogue;
 
     // Start is called before the first frame update
     void Start()
     {
         movePoint.parent = null;
+        inDialogue = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Makes the camera follow the player
-        playerCamera();
-
-        //Checks if player is running or not
-        playerSprint();
-
-        //If the player has reached movePoint, movePoint is then allowed to move.
-        playerMovement();
-
-        //Generate a fish by pressing space
-        if(Input.GetKeyDown("space"))
+        if(!inDialogue)
         {
-            if (!checkIfPlayerCanFish())
-                error.triggerDialogue();
+            //Makes the camera follow the player
+            playerCamera();
+
+            //Checks if player is running or not
+            playerSprint();
+
+            //If the player has reached movePoint, movePoint is then allowed to move.
+            playerMovement();
+
+            //Generate a fish by pressing space
+            if (Input.GetKeyDown("space"))
+            {
+                if (!checkIfPlayerCanFish())
+                {
+                    error.triggerDialogue();
+                    inDialogue = true;
+                }
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown("space")) {
+                if (!dialogueBox.displayNextSentence())
+                    inDialogue = false;
+            }
+        }
+
       
     }
 

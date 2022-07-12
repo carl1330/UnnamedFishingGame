@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLength: 4.6
   minLength: 2
-  "maxW\xEDdth": 1.27
+  maxWidth: 2
   minWidth: 0.61
-  mass: 400
+  mass: 800
   luck: 1
