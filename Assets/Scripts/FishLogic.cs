@@ -7,6 +7,11 @@ public class FishLogic : MonoBehaviour
     private float length;
     private float width;
     private float weight;
+    public int maxLength = 2;
+    public int minLength = 1;
+    public int maxWídth = 2;
+    public int minWidth= 1;
+    public int luck = 2;
     public override string ToString()
     {
         return $"Length: {length:0.##}m Width: {width:0.##}m Weight: {weight:0.##}kg";
@@ -14,9 +19,9 @@ public class FishLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        length = generateNum(2, 1, 5);
-        width = generateNum(2, 1, 2);
-        weight = generateNum(2, (int)(length * width), (int)(length * width + 1));
+        length = generateNum(luck, minLength, maxLength);
+        width = generateNum(luck, minWidth, maxWídth);
+        weight = generateNum(luck, (int)(length * width), (int)(length * width + 1));
         Debug.Log(this);
     }
 
