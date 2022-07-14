@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public DialogueTrigger error;
     public DialogueHandler dialogueBox;
     public MenuHandler menuBox;
+    public bool isFishing;
 
     //Private variables
     public Dir dir;
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                changePlayerSpriteHori();
+                if(!isFishing){ changePlayerSpriteHori(); }
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, whatStopsMovement))
                 {
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
+                if (!isFishing) 
                 changePlayerSpriteVert();
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))

@@ -51,3 +51,6 @@ TagManager:
   - name: Walter
     uniqueID: 2701420293
     locked: 0
+  - name: Foreground
+    uniqueID: 922316327
+    locked: 0

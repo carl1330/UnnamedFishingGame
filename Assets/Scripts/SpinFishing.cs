@@ -19,22 +19,33 @@ public class SpinFishing : MonoBehaviour
     GameObject powerbar;
      [SerializeField]
     PlayerController _playercontroller;
+    SpriteRenderer SR;
+    Rigidbody2D RBlure;
     // Start is called before the first frame update
     void Start()
     {
+        RBlure = GameObject.Find("FishingLure").GetComponent<Rigidbody2D>();
         _playercontroller = GameObject.Find("Player").GetComponent<PlayerController>();
-       
+        SR = _playercontroller.gameObject.GetComponent<SpriteRenderer>();
         coroutine = WaitAndPrint(0.01f);
         powerBar = GameObject.Find("PowerBar").GetComponent<Image>();
         powerBar.enabled = false ;
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            StopAllCoroutines();
 
-            if(!isCasting)
+            RBlure.velocity = Vector2.zero;
+            RBlure.gameObject.transform.position = _playercontroller.transform.position;
+        }
+            if (Input.GetMouseButtonDown(0))
+        {
+            
+            _playercontroller.isFishing = true;
+            StopAllCoroutines();
+         
+            if (!isCasting)
             {
                 powerBar.enabled = true;
                 isCasting = true;
@@ -46,8 +57,11 @@ public class SpinFishing : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
         {
-            
+            _playercontroller.isFishing = false;
             isCasting = false;
+            
+
+            castPhysics();
             StartCoroutine(Delay(2.0f));
            
             //StopCoroutine(StartCoroutine(WaitAndPrint(0.01f)));
@@ -57,13 +71,27 @@ public class SpinFishing : MonoBehaviour
     void casting()
     {
         
-        //if(_playercontroller.dir=direction)
+        
 
     }
     void castPhysics()
     {
-
-
+        if(_playercontroller.dir==PlayerController.Dir.UP)
+        {
+            RBlure.AddForce(new Vector2(0, power), ForceMode2D.Impulse);
+        }
+        if (_playercontroller.dir == PlayerController.Dir.DOWN)
+        {
+            RBlure.AddForce(new Vector2(0, -power), ForceMode2D.Impulse);
+        }
+        if (_playercontroller.dir == PlayerController.Dir.RIGHT)
+        {
+            RBlure.AddForce(new Vector2( power, power), ForceMode2D.Impulse);
+        }
+        if (_playercontroller.dir == PlayerController.Dir.LEFT)
+        {
+            RBlure.AddForce(new Vector2(-power,power), ForceMode2D.Impulse);
+        }
 
 
     }
