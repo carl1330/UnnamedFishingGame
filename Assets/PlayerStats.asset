@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864363b396b06dd4cb720e84d764b6bb, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  playerName: Bengt
+  playerName: Simon
   playerLevel: 5
   playerStrength: 2
   playerStamina: 2
