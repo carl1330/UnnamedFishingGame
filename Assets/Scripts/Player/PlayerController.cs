@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    enum Dir{
+   public enum Dir{
         UP,
         DOWN,
         LEFT,
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public MenuHandler menuBox;
 
     //Private variables
-    private Dir dir;
+    public Dir dir;
     private bool inDialogue;
     private bool inMenu;
 

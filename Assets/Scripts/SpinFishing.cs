@@ -6,8 +6,8 @@ using UnityEngine;
 public class SpinFishing : MonoBehaviour
 {
     private IEnumerator coroutine;
-
-
+    
+    int direction;
     bool isFishing;
     bool isCasting;
     float balanceIndex;
@@ -17,14 +17,16 @@ public class SpinFishing : MonoBehaviour
     bool chargeCast;
     Image powerBar;
     GameObject powerbar;
+     [SerializeField]
+    PlayerController _playercontroller;
     // Start is called before the first frame update
     void Start()
     {
-        
-        powerBar = GameObject.Find("bar").GetComponent<Image>();
+        _playercontroller = GameObject.Find("Player").GetComponent<PlayerController>();
+       
         coroutine = WaitAndPrint(0.01f);
-        powerbar = GameObject.Find("PowerBar");
-        powerbar.SetActive(false);
+        powerBar = GameObject.Find("PowerBar").GetComponent<Image>();
+        powerBar.enabled = false ;
     }
     private void Update()
     {
@@ -34,7 +36,7 @@ public class SpinFishing : MonoBehaviour
 
             if(!isCasting)
             {
-                powerbar.SetActive(true);
+                powerBar.enabled = true;
                 isCasting = true;
               
                 power = 0;
@@ -52,7 +54,19 @@ public class SpinFishing : MonoBehaviour
 
         }
     }
+    void casting()
+    {
+        
+        //if(_playercontroller.dir=direction)
 
+    }
+    void castPhysics()
+    {
+
+
+
+
+    }
     void fishingGame()
     {
         while(isFishing)
@@ -102,7 +116,7 @@ public class SpinFishing : MonoBehaviour
         
 
         yield return new WaitForSeconds(time);
-        powerbar.SetActive(false);
+        powerBar.enabled = false;
         // Code to execute after the delay
     }
 }
