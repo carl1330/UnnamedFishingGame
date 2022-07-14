@@ -32,7 +32,7 @@ public class SpinFishing : MonoBehaviour
         {
             StopAllCoroutines();
 
-            if(isCasting==false)
+            if(!isCasting)
             {
                 powerbar.SetActive(true);
                 isCasting = true;
