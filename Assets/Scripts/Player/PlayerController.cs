@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
         LEFT,
         RIGHT
     }
-
+    //Public variables
     public float moveSpeed;
     public Transform movePoint;
     public Sprite playerUp;
@@ -21,20 +21,25 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatStopsMovement;
     public DialogueTrigger error;
     public DialogueHandler dialogueBox;
+    public MenuHandler menuBox;
+
+    //Private variables
     private Dir dir;
     private bool inDialogue;
+    private bool inMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         movePoint.parent = null;
         inDialogue = false;
+        inMenu = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!inDialogue)
+        if(!inDialogue && !inMenu)
         {
             //Makes the camera follow the player
             playerCamera();
@@ -56,18 +61,44 @@ public class PlayerController : MonoBehaviour
             }
             if(Input.GetKeyDown("b"))
             {
-
+                menuBox.openMenu();
+                inMenu = true;
             }
         }
         else
         {
-            if (Input.GetKeyDown("space")) {
-                if (!dialogueBox.displayNextSentence())
-                    inDialogue = false;
+            if (inDialogue)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    if (!dialogueBox.displayNextSentence())
+                        inDialogue = false;
+                }
             }
-        }
+            if(inMenu)
+            {
+                if (Input.GetKeyDown("b"))
+                {
+                    menuBox.closeMenu();
+                    inMenu = false;
+                }
+                if(Input.GetKeyDown("s") || Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    menuBox.scrollDown();
+                }
+                if(Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    menuBox.scrollUp();
+                }
+                if(Input.GetKeyDown("return") || Input.GetKeyDown("space"))
+                {
+                    menuBox.selectOption();
+                    inMenu = false;
+                }
 
-      
+            }
+
+        }
     }
 
     void playerSprint()
