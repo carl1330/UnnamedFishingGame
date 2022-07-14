@@ -49,4 +49,4 @@ MonoBehaviour:
   maxWidth: 2
   minWidth: 0.61
   mass: 800
-  luck: 1
+  luck: 5
