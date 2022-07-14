@@ -24,7 +24,7 @@ public class SpinFishing : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
 
-            if(isCasting==false)
+            if(!isCasting)
             {
 
                 isCasting = true;
