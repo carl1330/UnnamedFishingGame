@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public enum Dir{
+    public enum Dir{
         UP,
         DOWN,
         LEFT,
@@ -115,16 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                if (Input.GetAxisRaw("Horizontal") < 0)
-                {
-                    dir = Dir.LEFT;
-                    spriteRenderer.sprite = playerLeft;
-                }
-                else
-                {
-                    dir = Dir.RIGHT;
-                    spriteRenderer.sprite = playerRight;
-                }
+                changePlayerSpriteHori();
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, whatStopsMovement))
                 {
@@ -134,16 +125,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                if (Input.GetAxisRaw("Vertical") < 0)
-                {
-                    dir = Dir.DOWN;
-                    spriteRenderer.sprite = playerDown;
-                }
-                else
-                {
-                    dir = Dir.UP;
-                    spriteRenderer.sprite = playerUp;
-                }
+                changePlayerSpriteVert();
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, whatStopsMovement))
                 {
@@ -203,6 +185,34 @@ public class PlayerController : MonoBehaviour
         FishableFishes fishes = GameObject.FindGameObjectWithTag(bodyOfWater).GetComponent<FishableFishes>();
         var whichFish = Random.Range(0,fishes.fishes.Length);
         Object.Instantiate(fishes.fishes[whichFish], this.transform);
+    }
+
+    void changePlayerSpriteHori()
+    {
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            dir = Dir.LEFT;
+            spriteRenderer.sprite = playerLeft;
+        }
+        else
+        {
+            dir = Dir.RIGHT;
+            spriteRenderer.sprite = playerRight;
+        }
+    }
+
+    void changePlayerSpriteVert()
+    {
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            dir = Dir.DOWN;
+            spriteRenderer.sprite = playerDown;
+        }
+        else
+        {
+            dir = Dir.UP;
+            spriteRenderer.sprite = playerUp;
+        }
     }
 }
 
