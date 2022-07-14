@@ -19,10 +19,9 @@ public class DialogueHandler : MonoBehaviour
 
     public void startDialogue(Dialogue d)
     {
-        if(!d.name.Contains("err"))
-            nameText.text = d.name;
-
         sentences.Clear();
+
+        nameText.text = d.stats.playerName;
 
         foreach(string sentence in d.sentences) {
             sentences.Enqueue(sentence);

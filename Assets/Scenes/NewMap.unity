@@ -1594,6 +1594,7 @@ GameObject:
   - component: {fileID: 943173656}
   - component: {fileID: 943173653}
   - component: {fileID: 943173657}
+  - component: {fileID: 943173658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1706,7 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: err_NoWater
+    stats: {fileID: 943173658}
     sentences:
     - I can't fish here, there is no water
     - "Maybe I should try Storsj\xF6n?"
@@ -1722,6 +1723,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5f9a200e2286f4a8ed29145d9bf063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &943173658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943173652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864363b396b06dd4cb720e84d764b6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Player
+  playerLevel: 0
+  playerStrength: 0
+  playerStamina: 0
+  playerLuck: 0
+  playerMoney: 0
+  fishCaught: 0
 --- !u!1 &1105373539
 GameObject:
   m_ObjectHideFlags: 0

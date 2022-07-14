@@ -54,6 +54,10 @@ public class PlayerController : MonoBehaviour
                     inDialogue = true;
                 }
             }
+            if(Input.GetKeyDown("b"))
+            {
+
+            }
         }
         else
         {
