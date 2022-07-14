@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -74,7 +75,16 @@ public class MenuHandler : MonoBehaviour
 
     private void openStatistics()
     {
-
+        StartCoroutine(LoadYourAsyncScene("StatisticsScreen"));
     }
 
+    IEnumerator LoadYourAsyncScene(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        while(!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 }

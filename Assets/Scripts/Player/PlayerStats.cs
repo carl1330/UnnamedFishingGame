@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStats : MonoBehaviour
+[CreateAssetMenu(fileName = "Player", menuName = "Player")]
+public class PlayerStats : ScriptableObject
 {
     public string playerName;
     public int playerLevel;
