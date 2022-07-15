@@ -11,7 +11,7 @@ public class SpinFishing : MonoBehaviour
     bool isFishing;
     bool isCasting;
     float balanceIndex;
-    float power;
+    public float power;
     const float max=10;
     const float min=0.1f;
     bool chargeCast;
@@ -35,13 +35,15 @@ public class SpinFishing : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-
+         
             RBlure.velocity = Vector2.zero;
             RBlure.gameObject.transform.position = _playercontroller.transform.position;
         }
             if (Input.GetMouseButtonDown(0))
         {
-            
+            RBlure.gameObject.GetComponent<LureLogic>().bounce = true;
+            RBlure.gameObject.GetComponent<LureLogic>().force = RBlure.gameObject.GetComponent<LureLogic>().forceInitial;
+            RBlure.gravityScale = 1;
             _playercontroller.isFishing = true;
             StopAllCoroutines();
          
@@ -76,25 +78,24 @@ public class SpinFishing : MonoBehaviour
     }
     void castPhysics()
     {
-        if(_playercontroller.dir==PlayerController.Dir.UP)
+        float offset = Random.Range(-1f, 0f);
+
+        if(_playercontroller.dir==PlayerController.Dir.UP || _playercontroller.dir==PlayerController.Dir.DOWN)
         {
-            RBlure.AddForce(new Vector2(0, power), ForceMode2D.Impulse);
-        }
-        if (_playercontroller.dir == PlayerController.Dir.DOWN)
-        {
-            RBlure.AddForce(new Vector2(0, -power), ForceMode2D.Impulse);
+            RBlure.AddForce(new Vector2(offset, power * 2f), ForceMode2D.Impulse);
         }
         if (_playercontroller.dir == PlayerController.Dir.RIGHT)
         {
-            RBlure.AddForce(new Vector2( power, power), ForceMode2D.Impulse);
+            RBlure.AddForce(new Vector2(power +offset, power * 2f + offset), ForceMode2D.Impulse);
         }
         if (_playercontroller.dir == PlayerController.Dir.LEFT)
         {
-            RBlure.AddForce(new Vector2(-power,power), ForceMode2D.Impulse);
+            RBlure.AddForce(new Vector2(-power + offset, power * 2f + offset), ForceMode2D.Impulse);
         }
 
 
     }
+
     void fishingGame()
     {
         while(isFishing)
@@ -104,8 +105,6 @@ public class SpinFishing : MonoBehaviour
 
         }
     }
-
-  
 
     private IEnumerator WaitAndPrint(float waitTime)
     {
@@ -132,11 +131,6 @@ public class SpinFishing : MonoBehaviour
                 yield return new WaitForSeconds(waitTime);
             powerBar.fillAmount = power * 0.1f;
                 print("Power: " + power);
-            
-          
-
-            
-        
         }
     }
     IEnumerator Delay(float time)
